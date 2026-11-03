@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg">
+<link rel="icon" type="image/png" sizes="16x16" href="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg">
+<link rel="apple-touch-icon" sizes="180x180" href="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg">
+  <meta name="theme-color" content="#0d1b2a">
+  <title>Urban Cart | Place Your Order</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px 14px;
+      font-family: Arial, sans-serif;
+      background: #f3f5f9;
+      color: #172033;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 20px auto;
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(13, 27, 42, .09);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .brand h1 {
+      color: #0d1b2a;
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .brand h1 span { color: #ff5e62; }
+
+    .brand p {
+      color: #667085;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field { margin-bottom: 17px; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d7dce5;
+      border-radius: 9px;
+      background: white;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #ffb4b6;
+      border-color: #ff5e62;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .payment {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 12px;
+      border: 1px solid #d7dce5;
+      border-radius: 9px;
+    }
+
+    .payment label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .payment input {
+      width: auto;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      background: linear-gradient(135deg, #ff416c, #ff5e62);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .note {
+      margin: 16px 0 0;
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .container { padding: 21px 16px; }
+      .grid { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header class="brand">
+      <h1>Urban<span>Cart</span></h1>
+      <p>Your One Stop Online Store</p>
+      <p style="margin-top:12px;font-weight:700;color:#172033">
+        Customer Order Form
+      </p>
+    </header>
+
+    <!-- FormSubmit sends submitted form fields to your email. -->
+    <!-- <form
+      id="orderForm"
+      action="https://formsubmit.co/lumora.business642@gmail.com"
+      method="POST"
+    > -->
+    <form
+  id="orderForm"
+  action="https://formsubmit.co/glowandgrace3041@gmail.com"
+  method="POST"
+  accept-charset="UTF-8"
+>
+      <input type="hidden" name="_subject" value="New Urban Cart Order">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+
+      <div class="grid">
+        <div class="field">
+          <label for="firstName">First Name *</label>
+          <input id="firstName" name="First Name"
+                 type="text" autocomplete="given-name"
+                 maxlength="60" required>
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last Name *</label>
+          <input id="lastName" name="Last Name"
+                 type="text" autocomplete="family-name"
+                 maxlength="60" required>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="phone">Phone / WhatsApp *</label>
+          <input id="phone" name="Phone / WhatsApp"
+                 type="tel" autocomplete="tel"
+                 maxlength="25" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="Customer Email"
+                 type="email" autocomplete="email"
+                 maxlength="120">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="product">Product Name or ID *</label>
+        <input id="product" name="Product Name or ID"
+               type="text" maxlength="150"
+               placeholder="Enter the product you want"
+               required>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="quantity">Quantity *</label>
+          <input id="quantity" name="Quantity"
+                 type="number" min="1" max="1000"
+                 value="1" required>
+        </div>
+
+        <div class="field">
+          <label for="payment">Payment Method *</label>
+          <select id="payment" name="Payment Method" required>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address">Complete Delivery Address *</label>
+        <textarea id="address" name="Delivery Address"
+                  autocomplete="street-address"
+                  maxlength="1000"
+                  placeholder="House, street, area, etc."
+                  required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="city">City *</label>
+        <input id="city" name="City" type="text"
+               autocomplete="address-level2"
+               maxlength="100" required>
+      </div>
+
+      <div class="field">
+        <label for="notes">Additional Notes (Optional)</label>
+        <textarea id="notes" name="Additional Notes"
+                  maxlength="1000"
+                  placeholder="Product colour, size, or delivery instructions"></textarea>
+      </div>
+
+      <button class="submit-btn" id="submitButton" type="submit">
+        Submit Order
+      </button>
+
+      <p class="note">
+        Your order details will be sent to Urban Cart for confirmation.
+        Submitting this form does not process an online payment.
+      </p>
+    </form>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("orderForm");
+      const button = document.getElementById("submitButton");
+
+      form.addEventListener("submit", function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          form.reportValidity();
+          return;
+        }
+
+        // Allow normal form submission to FormSubmit.
+        // Do not preventDefault() for a valid form.
+        button.disabled = true;
+        button.textContent = "Submitting Order...";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Cart - Your One Stop Online Store</title>
+
+  <!-- Dynamic Favicon set via script from logo image -->
+  <link id="dynamic-favicon" rel="icon" type="image/jpeg" href="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    
+const orderForm = document.getElementById("orderForm");
+
+if (orderForm) {
+  orderForm.addEventListener("submit", function (event) {
+    const totalElement = document.getElementById("checkoutTotalAmount");
+    const hiddenTotal = document.getElementById("orderTotal");
+
+    if (totalElement && hiddenTotal) {
+      hiddenTotal.value = totalElement.textContent
+        .replace(/[^0-9.-]/g, "");
+    }
+  });
+}
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandNavy: '#0d1b2a',
+            brandBlue: '#1a2b4c',
+            brandOrange: '#ff5e62',
+            brandPink: '#e11d48',
+            brandAccent: '#ff416c'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .ali {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff416c, #ff5e62);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 5px 14px rgba(255, 65, 108, 0.22);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.ali:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 22px rgba(255, 65, 108, 0.35);
+    background: linear-gradient(135deg, #ff5e62, #ff416c);
+}
+
+.ali:active {
+    transform: scale(0.98);
+}
+
+.ali i {
+    font-size: 12px;
+}
+    /* Custom Scrollbar & Animations */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a2b4c 100%);
+    }
+
+    .gradient-btn {
+      background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+      transition: all 0.3s ease;
+    }
+    .gradient-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 15px -3px rgba(255, 65, 108, 0.3);
+    }
+
+    /* Modal Backdrop Blur */
+    .glass-backdrop {
+      background-color: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Smooth Slide Drawers */
+    .drawer-slide {
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ================= ANNOUNCEMENT BAR ================= -->
+  <div class="bg-gradient-to-r from-brandNavy via-brandBlue to-brandNavy text-white text-xs py-2 px-4 text-center font-medium flex justify-between items-center z-50">
+    <div class="hidden sm:flex items-center gap-2">
+      <i class="fa-solid fa-truck-fast text-brandOrange"></i>
+      <span>Free Express Shipping on Orders Over $50</span>
+    </div>
+    <div class="mx-auto sm:mx-0">
+      🔥 Flash Sale: Use code <span class="bg-brandOrange/20 text-brandOrange px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">URBAN20</span> for 20% OFF!
+    </div>
+    <div class="hidden md:flex items-center gap-4 text-slate-300">
+      <a href="#help" class="hover:text-white transition">24/7 Support</a>
+      <span>|</span>
+      <a href="#track" class="hover:text-white transition">Track Order</a>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER ================= -->
+  <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+
+        <!-- LOGO BRAND -->
+        <a href="#" class="flex items-center gap-3 shrink-0 group">
+          <img 
+            src="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg" 
+            alt="Urban Cart Logo" 
+            class="h-14 w-14 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform duration-300 border border-gray-100"
+            onerror="this.src='https://placehold.co/100x100/0d1b2a/ffffff?text=UrbanCart'"
+          />
+          <div class="hidden xs:block">
+            <span class="text-2xl font-extrabold font-heading text-brandNavy tracking-tight leading-none block">
+              Urban<span class="gradient-text">Cart</span>
+            </span>
+            <span class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block mt-0.5">
+              One Stop Online Store
+            </span>
+          </div>
+        </a>
+
+        <!-- SMART SEARCH BAR -->
+        <div class="flex-1 max-w-2xl relative hidden md:block">
+          <div class="relative flex items-center">
+            <select id="searchCategory" class="bg-slate-100 text-xs text-slate-600 font-medium px-3 py-2.5 rounded-l-full border-r border-slate-200 outline-none hover:bg-slate-200 transition">
+              <option value="All">All Categories</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Home">Home & Kitchen</option>
+              <option value="Fitness">Sports & Fitness</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+            <input 
+              type="text" 
+              id="searchInput"
+              placeholder="Search 10,000+ products, brands & categories..."
+              class="w-full bg-slate-100 text-sm pl-4 pr-10 py-2.5 rounded-r-full outline-none border border-transparent focus:border-brandBlue focus:bg-white transition"
+              oninput="handleSearch()"
+            >
+            <button onclick="executeSearch()" class="absolute right-3 text-slate-400 hover:text-brandOrange transition">
+              <i class="fa-solid fa-magnifying-glass text-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- USER ACTION ICONS -->
+        <div class="flex items-center gap-3 sm:gap-5">
+          <!-- Account -->
+          <button class="hidden sm:flex flex-col items-center text-slate-600 hover:text-brandBlue transition">
+            <i class="fa-regular fa-user text-xl"></i>
+            <span class="text-[11px] font-medium mt-0.5">Account</span>
+          </button>
+
+          <!-- Wishlist -->
+          <button onclick="toggleWishlistDrawer()" class="relative flex flex-col items-center text-slate-600 hover:text-brandBlue transition">
+            <i class="fa-regular fa-heart text-xl"></i>
+            <span class="text-[11px] font-medium mt-0.5 hidden sm:inline">Wishlist</span>
+            <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-brandOrange text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+          </button>
+
+          <!-- Cart Drawer Toggle -->
+          <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2.5 bg-brandNavy text-white px-3.5 py-2 rounded-full hover:bg-brandBlue transition shadow-sm">
+            <div class="relative">
+              <i class="fa-solid fa-cart-shopping text-lg"></i>
+              <span id="cartBadge" class="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </div>
+            <div class="hidden sm:block text-left text-xs font-semibold leading-tight">
+              <span class="block text-[10px] text-slate-300 font-normal">My Cart</span>
+              <span id="cartHeaderTotal">$0.00</span>
+            </div>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- MOBILE SEARCH BAR -->
+      <div class="pb-3 md:hidden">
+        <div class="relative flex items-center">
+          <input 
+            type="text" 
+            id="mobileSearchInput"
+            placeholder="Search products..."
+            class="w-full bg-slate-100 text-sm pl-4 pr-10 py-2 rounded-full outline-none focus:bg-white border focus:border-brandBlue"
+            oninput="handleMobileSearch()"
+          >
+          <i class="fa-solid fa-magnifying-glass absolute right-3 text-slate-400"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY NAVIGATION BAR -->
+    <nav class="bg-slate-900 text-slate-200 border-t border-slate-800 overflow-x-auto no-scrollbar">
+      <div class="max-w-7xl mx-auto px-4 flex items-center space-x-8 text-xs font-medium py-2.5 whitespace-nowrap">
+        <button onclick="filterCategory('All')" class="hover:text-brandOrange transition flex items-center gap-1.5 font-semibold text-white">
+          <i class="fa-solid fa-border-all text-brandOrange"></i> All Categories
+        </button>
+        <button onclick="filterCategory('Electronics')" class="hover:text-brandOrange transition">Electronics & Tech</button>
+        <button onclick="filterCategory('Fashion')" class="hover:text-brandOrange transition">Fashion & Apparel</button>
+        <button onclick="filterCategory('Home')" class="hover:text-brandOrange transition">Home & Living</button>
+        <button onclick="filterCategory('Fitness')" class="hover:text-brandOrange transition">Sports & Outdoor</button>
+        <button onclick="filterCategory('Accessories')" class="hover:text-brandOrange transition">Gadgets & Accessories</button>
+        <span class="text-slate-700">|</span>
+        <button onclick="filterByBadge('Hot')" class="text-amber-400 font-semibold hover:underline flex items-center gap-1">
+          <i class="fa-solid fa-fire text-amber-400"></i> Trending Deals
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= HERO CAROUSEL / BANNER ================= -->
+  <section class="relative bg-gradient-to-r from-slate-900 via-brandNavy to-slate-900 text-white overflow-hidden py-12 md:py-16">
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brandOrange blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-purple-600 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Text Info -->
+        <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+          <span class="inline-block bg-brandOrange/20 border border-brandOrange/40 text-brandOrange text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+            New Season Arrival 2026
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold font-heading leading-tight">
+            Discover Everything You Need in <span class="gradient-text">One Stop</span>.
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+            Explore thousands of premium products across tech, fashion, home essentials & sports with guaranteed lowest prices and lightning express delivery.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start">
+            <a href="form.html" class="gradient-btn px-7 py-3 rounded-full font-bold text-sm text-white shadow-lg inline-flex items-center gap-2">
+              Order Now 
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <button onclick="filterByBadge('20% OFF')" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-full font-bold text-sm transition backdrop-blur">
+              View Exclusive Discounts
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Banner Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative group bg-white/5 p-4 rounded-3xl border border-white/10 backdrop-blur max-w-sm w-full shadow-2xl">
+            <img 
+              src="poster.jpg" 
+              alt="Urban Cart Store Offer" 
+              class="w-full h-64 object-contain rounded-2xl bg-white p-4 shadow-inner"
+            />
+            <div class="mt-4 text-center">
+              <span class="text-xs text-brandOrange font-bold uppercase tracking-wider">Verified Official Retailer</span>
+              <h3 class="text-lg font-bold text-white">Urban Cart Certified Guarantee</h3>
+              <p class="text-xs text-slate-400 mt-1">100% Authentic Products • Easy 30-Day Returns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VALUE PROPOSITION BAR ================= -->
+  <section class="bg-white border-b border-gray-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div class="p-3 flex flex-col items-center">
+        <div class="w-12 h-12 rounded-full bg-blue-50 text-brandBlue flex items-center justify-center text-xl mb-2">
+          <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        <h4 class="font-bold text-xs uppercase tracking-wide text-slate-800">Free Express Delivery</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">On orders starting from $50</p>
+      </div>
+
+      <div class="p-3 flex flex-col items-center">
+        <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-2">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h4 class="font-bold text-xs uppercase tracking-wide text-slate-800">100% Secure Checkout</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Encrypted SSL Payment gateway</p>
+      </div>
+
+      <div class="p-3 flex flex-col items-center">
+        <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center text-xl mb-2">
+          <i class="fa-solid fa-rotate-left"></i>
+        </div>
+        <h4 class="font-bold text-xs uppercase tracking-wide text-slate-800">30-Day Hassle Returns</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Money back customer promise</p>
+      </div>
+
+      <div class="p-3 flex flex-col items-center">
+        <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-xl mb-2">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <h4 class="font-bold text-xs uppercase tracking-wide text-slate-800">24/7 Dedicated Support</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Contact via live chat or phone</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRODUCT CATALOG SECTION ================= -->
+  <main id="catalog" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Section Header & Controls -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-gray-200 pb-5">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">
+          Explore Our <span class="gradient-text">Store Products</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Showing results for <span id="activeFilterLabel" class="font-semibold text-brandNavy">All Products</span>
+        </p>
+      </div>
+
+      <!-- Controls & Sort Filters -->
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Sort Dropdown -->
+        <div class="flex items-center gap-2">
+          <label for="sortBy" class="text-xs font-semibold text-slate-600">Sort by:</label>
+          <select id="sortBy" onchange="applyFilters()" class="bg-white border border-slate-300 rounded-lg text-xs font-medium px-3 py-2 outline-none focus:border-brandNavy">
+            <option value="featured">Featured Picks</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+
+        <!-- Filter Pill Tags -->
+        <div class="flex gap-1.5 overflow-x-auto no-scrollbar py-1">
+          <button onclick="filterCategory('All')" class="cat-btn active bg-brandNavy text-white px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">All</button>
+          <button onclick="filterCategory('Electronics')" class="cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">Electronics</button>
+          <button onclick="filterCategory('Fashion')" class="cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">Fashion</button>
+          <button onclick="filterCategory('Home')" class="cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">Home</button>
+          <button onclick="filterCategory('Fitness')" class="cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">Fitness</button>
+          <button onclick="filterCategory('Accessories')" class="cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">Accessories</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Dynamically populated via JavaScript -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="emptyState" class="hidden text-center py-16">
+      <i class="fa-solid fa-box-open text-5xl text-slate-300 mb-3"></i>
+      <h3 class="text-lg font-bold text-slate-700">No products found</h3>
+      <p class="text-xs text-slate-500 mt-1">Try adjusting your search or category filter terms.</p>
+      <button onclick="resetFilters()" class="mt-4 gradient-btn px-5 py-2 text-white text-xs font-bold rounded-full">Reset Filters</button>
+    </div>
+  </main>
+
+  <!-- ================= SHOPPING CART DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <!-- Overlay -->
+    <div onclick="toggleCartDrawer()" class="absolute inset-0 glass-backdrop"></div>
+    
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between z-10">
+      <!-- Drawer Header -->
+      <div class="p-4 border-b border-gray-100 flex items-center justify-between bg-slate-900 text-white">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping text-brandOrange"></i>
+          <h3 class="font-bold text-base font-heading">Shopping Cart (<span id="cartDrawerCount">0</span>)</h3>
+        </div>
+        <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white text-lg px-2">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Free Shipping Tracker -->
+      <div class="bg-amber-50 border-b border-amber-100 p-3 text-xs text-amber-800">
+        <div class="flex justify-between font-semibold mb-1">
+          <span id="shippingNotice">Add $50.00 more for Free Express Shipping!</span>
+          <span id="shippingPercent">0%</span>
+        </div>
+        <div class="w-full bg-amber-200 h-1.5 rounded-full overflow-hidden">
+          <div id="shippingProgressBar" class="bg-brandOrange h-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items Container -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <!-- Dynamic Cart Items Here -->
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-gray-200 bg-slate-50 space-y-3">
+        <!-- Coupon Code -->
+        <div class="flex gap-2">
+          <input type="text" id="couponCode" placeholder="Promo code (e.g. URBAN20)" class="flex-1 text-xs border border-gray-300 rounded-lg px-3 py-2 uppercase outline-none focus:border-brandNavy">
+          <button onclick="applyCoupon()" class="bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded-lg text-xs font-bold transition">Apply</button>
+        </div>
+
+        <!-- Order Summary Lines -->
+        <div class="space-y-1.5 text-xs text-slate-600">
+          <div class="flex justify-between">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="flex justify-between text-emerald-600">
+            <span>Discount</span>
+            <span id="cartDiscount">-$0.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Estimated Shipping</span>
+            <span id="cartShipping">$0.00</span>
+          </div>
+          <div class="flex justify-between text-sm font-bold text-slate-900 pt-2 border-t border-slate-200">
+            <span>Total</span>
+            <span id="cartTotal" class="text-brandPink">$0.00</span>
+          </div>
+        </div>
+
+        <!-- <button onclick="openCheckoutModal()" class="w-full gradient-btn text-white py-3 rounded-xl font-bold text-sm shadow-md flex items-center justify-center gap-2">
+         <a href="form.html"> Proceed to Checkou</a> <i class="fa-solid fa-lock text-xs"></i>
+        </button> -->
+        <a href="form.html"
+   class="ali">
+   <span>Proceed to Checkout</span>
+   <i class="fa-solid fa-lock"></i>
+</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= QUICK VIEW PRODUCT MODAL ================= -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div onclick="closeQuickView()" class="absolute inset-0 glass-backdrop"></div>
+
+    <div class="relative bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl z-10 overflow-hidden">
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="quickViewContent">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHECKOUT MODAL ================= -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div onclick="closeCheckoutModal()" class="absolute inset-0 glass-backdrop"></div>
+
+    <div class="relative bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl z-10 overflow-y-auto max-h-[90vh]">
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="border-b border-gray-100 pb-4 mb-4 flex items-center gap-3">
+        <img src="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg" class="h-10 w-10 object-contain rounded-full" alt="Urban Cart">
+        <div>
+          <h3 class="font-extrabold text-lg font-heading text-slate-900">Secure Checkout</h3>
+          <p class="text-xs text-slate-500">Urban Cart Fast Express Payment</p>
+        </div>
+      </div>
+
+      <!-- <form id="checkoutForm" onsubmit="processOrder(event)" class="space-y-4"> -->
+  
+<!-- <form
+  id="orderForm"
+  data-checkout-id="checkoutForm"
+  action="https://formsubmit.co/lumora.business642@gmail.com"
+  method="POST"
+  onsubmit="processOrder(event)"
+  class="space-y-4"
+> -->
+<!-- <form
+  id="orderForm"
+  action="https://formsubmit.co/lumora.business642@gmail.com"
+  method="POST"
+  class="space-y-4"
+> -->
+
+<form
+  id="orderForm"
+  action="https://formsubmit.co/lumora.business642@gmail.com"
+  method="POST"
+  class="space-y-4"
+>
+  <input type="hidden" name="_subject" value="New Urban Cart Order">
+  <input type="hidden" name="_captcha" value="false">
+
+  <div class="grid grid-cols-2 gap-3">
+    <div>
+      <label class="block text-xs font-semibold text-slate-700 mb-1">First Name</label>
+      <input type="text" name="first_name" autocomplete="given-name" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy">
+    </div>
+
+    <div>
+      <label class="block text-xs font-semibold text-slate-700 mb-1">Last Name</label>
+      <input type="text" name="last_name" autocomplete="family-name" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy">
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+    <input type="email" name="email" autocomplete="email" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy" placeholder="you@example.com">
+  </div>
+
+  <div>
+    <label class="block text-xs font-semibold text-slate-700 mb-1">Shipping Address</label>
+    <input type="text" name="shipping_address" autocomplete="street-address" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy" placeholder="123 Main Street, Suite 100">
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div>
+      <label class="block text-xs font-semibold text-slate-700 mb-1">City</label>
+      <input type="text" name="city" autocomplete="address-level2" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy">
+    </div>
+
+    <div>
+      <label class="block text-xs font-semibold text-slate-700 mb-1">Payment Method</label>
+      <select name="payment_method" required class="w-full text-xs border border-slate-300 rounded-lg p-2.5 outline-none focus:border-brandNavy">
+        <option value="Credit / Debit Card">Credit / Debit Card</option>
+        <option value="PayPal">PayPal</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="bg-slate-50 p-3 rounded-lg text-xs space-y-1 my-3">
+    <div class="flex justify-between font-bold text-slate-800">
+      <span>Total Payable Amount:</span>
+      <span id="checkoutTotalAmount" class="text-brandPink text-sm">$0.00</span>
+    </div>
+
+    <input type="hidden" id="orderTotal" name="total_payable_amount" value="0.00">
+  </div>
+
+  <button type="submit" class="w-full gradient-btn text-white py-3 rounded-xl font-bold text-sm shadow-md">
+    Confirm Order &amp; Pay Now
+  </button>
+</form>
+
+
+    </div>
+  </div>
+
+  <!-- ================= SUCCESS ORDER CONFIRMATION MODAL ================= -->
+  <div id="successModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 glass-backdrop"></div>
+    <div class="relative bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl z-10 space-y-4">
+      <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-xl font-extrabold text-slate-900 font-heading">Order Confirmed!</h3>
+      <p class="text-xs text-slate-600">
+        Thank you for shopping with <span class="font-bold">Urban Cart</span>. Your order summary and tracking link have been emailed.
+      </p>
+      <div class="bg-slate-50 p-3 rounded-lg text-xs text-slate-500 font-mono">
+        Order ID: #UC-<span id="generatedOrderId">98321</span>
+      </div>
+      <button onclick="closeSuccessModal()" class="w-full bg-slate-900 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-slate-800">
+        Back to Store Shopping
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toastMessage">Item added to cart!</span>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Brand Story -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg" alt="Urban Cart" class="h-10 w-10 object-contain rounded-full bg-white p-0.5">
+            <span class="text-xl font-bold font-heading text-white">Urban<span class="gradient-text">Cart</span></span>
+          </div>
+          <p class="leading-relaxed">
+            Your premier one-stop online store for electronics, fashion, home essentials, and lifestyle gear. Delivering quality with speed worldwide.
+          </p>
+          <div class="flex gap-3 text-slate-300">
+            <a href="https://www.facebook.com/profile.php?id=61594904330665" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brandOrange hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brandOrange hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/urbancart799/?hl=en" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brandOrange hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#catalog" class="hover:text-white transition">Catalog Products</a></li>
+            <li><a href="#" class="hover:text-white transition">Featured Hot Deals</a></li>
+            <li><a href="#" class="hover:text-white transition">Special Discounts</a></li>
+            <li><a href="#" class="hover:text-white transition">Customer Reviews</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">Help Center & FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
+            <li><a href="#" class="hover:text-white transition">30-Day Returns</a></li>
+            <li><a href="#" class="hover:text-white transition">Track Order Status</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider">Join Newsletter</h4>
+          <p>Get exclusive early deals and $10 discount code sent to your inbox.</p>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Enter email address" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2 outline-none focus:border-brandOrange text-xs">
+            <button onclick="showToast('Subscribed to newsletter!', 'check')" class="gradient-btn text-white px-4 py-2 rounded-lg font-bold">Join</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+        <p>© 2026 Urban Cart Store. All rights reserved. Your One Stop Online Store.</p>
+        <div class="flex items-center gap-4 text-lg">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+          <i class="fa-brands fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT APP LOGIC ================= -->
+  <script>
+    // --- 1. PRODUCT DATABASE ("Sell All Things") ---
+    const products = [
+      {
+        id: 1,
+        title: "Wireless Noise-Canceling Headphones",
+        category: "Electronics",
+        price: 149.99,
+        originalPrice: 199.99,
+        rating: 4.8,
+        reviews: 240,
+        badge: "Best Seller",
+        badgeColor: "bg-amber-500",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+        description: "Immersive high-fidelity audio with active hybrid noise cancellation and up to 40 hours of playtime."
+      },
+      {
+        id: 2,
+        title: "Smartwatch Series Ultra Pro",
+        category: "Electronics",
+        price: 199.99,
+        originalPrice: 249.99,
+        rating: 4.9,
+        reviews: 185,
+        badge: "Hot",
+        badgeColor: "bg-red-500",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+        description: "Advanced health monitoring, GPS tracking, AMOLED touchscreen display, and water resistance."
+      },
+      {
+        id: 3,
+        title: "Organic Cotton Heavyweight Hoodie",
+        category: "Fashion",
+        price: 59.99,
+        originalPrice: 79.99,
+        rating: 4.6,
+        reviews: 98,
+        badge: "Trending",
+        badgeColor: "bg-purple-600",
+        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+        description: "Ultra-soft 100% organic cotton hoodie designed for effortless modern streetwear style."
+      },
+      {
+        id: 4,
+        title: "Modern Minimalist LED Desk Lamp",
+        category: "Home",
+        price: 39.99,
+        originalPrice: 49.99,
+        rating: 4.7,
+        reviews: 112,
+        badge: "20% OFF",
+        badgeColor: "bg-emerald-500",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
+        description: "Dimmable touch controls with multiple color temperature modes and integrated wireless phone charging."
+      },
+      {
+        id: 5,
+        title: "Insulated Stainless Steel Bottle (1L)",
+        category: "Fitness",
+        price: 24.99,
+        originalPrice: 34.99,
+        rating: 4.9,
+        reviews: 310,
+        badge: "Best Seller",
+        badgeColor: "bg-amber-500",
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80",
+        description: "Keeps drinks cold for 24 hours or hot for 12 hours. Leak-proof design with durable powder coat finish."
+      },
+      {
+        id: 6,
+        title: "Ergonomic Mesh Gaming Chair",
+        category: "Home",
+        price: 189.99,
+        originalPrice: 229.99,
+        rating: 4.8,
+        reviews: 76,
+        badge: "Hot",
+        badgeColor: "bg-red-500",
+        image: "https://images.unsplash.com/photo-1580481072645-022f9a6d1270?auto=format&fit=crop&w=600&q=80",
+        description: "Breathable lumbar support chair engineered for long work sessions and gaming comfort."
+      },
+      {
+        id: 7,
+        title: "High-Speed Magnetic Wireless Charger",
+        category: "Accessories",
+        price: 29.99,
+        originalPrice: 39.99,
+        rating: 4.5,
+        reviews: 142,
+        badge: "20% OFF",
+        badgeColor: "bg-emerald-500",
+        image: "https://images.unsplash.com/photo-1622445268465-8428800b4843?auto=format&fit=crop&w=600&q=80",
+        description: "Fast 15W fast magnetic alignment charging pad compatible with smartphones and wireless earbuds."
+      },
+      {
+        id: 8,
+        title: "Designer Polarized Sunglasses",
+        category: "Fashion",
+        price: 45.00,
+        originalPrice: 65.00,
+        rating: 4.7,
+        reviews: 64,
+        badge: "Trending",
+        badgeColor: "bg-purple-600",
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+        description: "UV400 protective polarized lenses housed in a lightweight matte frame with scratch resistance."
+      },
+
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let cart = [];
+    let wishlist = [];
+    let currentCategory = 'All';
+    let searchQuery = '';
+    let appliedDiscount = 0;
+
+    // --- INITIALIZATION ---
+    window.onload = function() {
+      renderProducts();
+      updateCartUI();
+      updateWishlistUI();
+      
+      // Dynamic Favicon setup check
+      const favicon = document.getElementById('dynamic-favicon');
+      if (favicon) {
+        favicon.href = "WhatsApp Image 2026-10-16 at 4.09.34 AM.jpeg";
+      }
+    };
+
+    // --- PRODUCT RENDERING LOGIC ---
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const emptyState = document.getElementById('emptyState');
+      const sortBy = document.getElementById('sortBy').value;
+
+      // Filter Logic
+      let filtered = products.filter(p => {
+        const matchesCategory = (currentCategory === 'All') || (p.category === currentCategory);
+        const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              p.category.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sorting Logic
+      if (sortBy === 'price-low') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortBy === 'price-high') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortBy === 'rating') {
+        filtered.sort((a, b) => b.rating - a.rating);
+      }
+
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      filtered.forEach(product => {
+        const isWishlisted = wishlist.includes(product.id);
+        const cardHTML = `
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+            
+            <!-- Image Header -->
+            <div class="relative bg-slate-100 h-52 overflow-hidden flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 ${product.badgeColor} text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md shadow-sm z-10">
+                ${product.badge}
+              </span>
+              
+              <button onclick="toggleWishlist(${product.id})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 hover:text-red-500 flex items-center justify-center transition shadow-sm z-10">
+                <i class="${isWishlisted ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart"></i>
+              </button>
+
+              <img 
+                src="${product.image}" 
+                alt="${product.title}" 
+                class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
+                onerror="this.src='https://placehold.co/400x400/e2e8f0/0f172a?text=Product'"
+              />
+
+              <!-- Quick View Button -->
+              <button onclick="openQuickView(${product.id})" class="absolute bottom-3 bg-slate-900/90 text-white text-xs font-semibold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur shadow-lg">
+                <i class="fa-regular fa-eye mr-1"></i> Quick View
+              </button>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">${product.category}</span>
+                <h3 class="font-bold text-slate-800 text-sm mt-1 line-clamp-1 hover:text-brandBlue transition cursor-pointer" onclick="openQuickView(${product.id})">
+                  ${product.title}
+                </h3>
+
+                <!-- Rating -->
+                <div class="flex items-center gap-1.5 mt-2">
+                  <div class="flex text-amber-400 text-xs">
+                    <i class="fa-solid fa-star"></i>
+                    <span class="text-xs font-bold text-slate-700 ml-1">${product.rating}</span>
+                  </div>
+                  <span class="text-[11px] text-slate-400">(${product.reviews})</span>
+                </div>
+              </div>
+
+              <!-- Price & CTA -->
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 line-through mr-1">$${product.originalPrice.toFixed(2)}</span>
+                  <span class="text-base font-extrabold text-slate-900">$${product.price.toFixed(2)}</span>
+                </div>
+                
+                <button onclick="addToCart(${product.id})" class="gradient-btn text-white w-9 h-9 rounded-xl flex items-center justify-center shadow-md">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        `;
+        grid.innerHTML += cardHTML;
+      });
+    }
+
+    // --- FILTER & SEARCH HANDLERS ---
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.getElementById('activeFilterLabel').innerText = cat === 'All' ? 'All Products' : cat;
+      
+      // Update UI active buttons
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.innerText.includes(cat) || (cat === 'All' && btn.innerText === 'All')) {
+          btn.className = 'cat-btn active bg-brandNavy text-white px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap';
+        } else {
+          btn.className = 'cat-btn bg-white border border-slate-200 hover:border-slate-400 text-slate-700 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap';
+        }
+      });
+
+      renderProducts();
+    }
+
+    function filterByBadge(badge) {
+      searchQuery = badge;
+      renderProducts();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById('searchInput').value;
+      renderProducts();
+    }
+
+    function handleMobileSearch() {
+      searchQuery = document.getElementById('mobileSearchInput').value;
+      renderProducts();
+    }
+
+    function executeSearch() {
+      renderProducts();
+    }
+
+    function applyFilters() {
+      renderProducts();
+    }
+
+    function resetFilters() {
+      searchQuery = '';
+      currentCategory = 'All';
+      document.getElementById('searchInput').value = '';
+      document.getElementById('mobileSearchInput').value = '';
+      filterCategory('All');
+    }
+
+    // --- CART FUNCTIONALITY ---
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item => item.id === productId);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      updateCartUI();
+      showToast(`Added "${product.title}" to cart!`, 'check');
+    }
+
+    function updateCartQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.id !== productId);
+        }
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      
+      // Update counts & badges
+      document.getElementById('cartBadge').innerText = totalItems;
+      document.getElementById('cartDrawerCount').innerText = totalItems;
+
+      // Free shipping calculation ($50 threshold)
+      const freeShippingThreshold = 50;
+      const progress = Math.min((subtotal / freeShippingThreshold) * 100, 100);
+      document.getElementById('shippingProgressBar').style.width = `${progress}%`;
+      document.getElementById('shippingPercent').innerText = `${Math.round(progress)}%`;
+
+      if (subtotal >= freeShippingThreshold) {
+        document.getElementById('shippingNotice').innerText = "🎉 Congratulations! You unlocked FREE Express Shipping!";
+      } else {
+        const diff = (freeShippingThreshold - subtotal).toFixed(2);
+        document.getElementById('shippingNotice').innerText = `Add $${diff} more for Free Express Shipping!`;
+      }
+
+      // Calculations
+      const discountAmount = subtotal * appliedDiscount;
+      const shippingCost = (subtotal > 0 && subtotal < freeShippingThreshold) ? 5.99 : 0.00;
+      const finalTotal = subtotal - discountAmount + shippingCost;
+
+      document.getElementById('cartHeaderTotal').innerText = `$${finalTotal.toFixed(2)}`;
+      document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cartDiscount').innerText = `-$${discountAmount.toFixed(2)}`;
+      document.getElementById('cartShipping').innerText = shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`;
+      document.getElementById('cartTotal').innerText = `$${finalTotal.toFixed(2)}`;
+      document.getElementById('checkoutTotalAmount').innerText = `$${finalTotal.toFixed(2)}`;
+
+      // Render Cart Items
+      const container = document.getElementById('cartItemsContainer');
+      container.innerHTML = '';
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300 mb-2"></i>
+            <p class="text-sm font-bold text-slate-600">Your shopping cart is empty</p>
+            <p class="text-xs text-slate-400 mt-1">Start browsing our catalog to add items.</p>
+          </div>
+        `;
+        return;
+      }
+
+      cart.forEach(item => {
+        container.innerHTML += `
+          <div class="flex gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100 items-center">
+            <img src="${item.image}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg bg-white border border-slate-200">
+            <div class="flex-1">
+              <h4 class="text-xs font-bold text-slate-800 line-clamp-1">${item.title}</h4>
+              <span class="text-xs font-semibold text-brandPink">$${item.price.toFixed(2)}</span>
+              
+              <div class="flex items-center gap-2 mt-2">
+                <button onclick="updateCartQuantity(${item.id}, -1)" class="w-6 h-6 rounded bg-white border border-slate-300 text-slate-600 font-bold text-xs hover:bg-slate-100 flex items-center justify-center">-</button>
+                <span class="text-xs font-bold text-slate-800">${item.quantity}</span>
+                <button onclick="updateCartQuantity(${item.id}, 1)" class="w-6 h-6 rounded bg-white border border-slate-300 text-slate-600 font-bold text-xs hover:bg-slate-100 flex items-center justify-center">+</button>
+              </div>
+            </div>
+            <button onclick="removeFromCart(${item.id})" class="text-slate-400 hover:text-red-500 p-2">
+              <i class="fa-solid fa-trash-can text-sm"></i>
+            </button>
+          </div>
+        `;
+      });
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponCode').value.trim().toUpperCase();
+      if (code === 'URBAN20') {
+        appliedDiscount = 0.20;
+        showToast('Promo code applied! 20% discount', 'check');
+      } else {
+        showToast('Invalid promo code. Try URBAN20', 'error');
+      }
+      updateCartUI();
+    }
+
+    // --- WISHLIST MANAGEMENT ---
+    function toggleWishlist(productId) {
+      if (wishlist.includes(productId)) {
+        wishlist = wishlist.filter(id => id !== productId);
+        showToast('Removed from wishlist', 'info');
+      } else {
+        wishlist.push(productId);
+        showToast('Saved to wishlist!', 'heart');
+      }
+      updateWishlistUI();
+      renderProducts();
+    }
+
+    function updateWishlistUI() {
+      document.getElementById('wishlistBadge').innerText = wishlist.length;
+    }
+
+    // --- DRAWER & MODAL CONTROLS ---
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function openQuickView(productId) {
+      const product = products.find(p => p.id === productId);
+      const modal = document.getElementById('quickViewModal');
+      const container = document.getElementById('quickViewContent');
+
+      container.innerHTML = `
+        <div class="bg-slate-100 p-4 rounded-xl flex items-center justify-center">
+          <img src="${product.image}" alt="${product.title}" class="w-full h-56 object-cover rounded-lg shadow-sm">
+        </div>
+        <div class="flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold text-brandOrange uppercase">${product.category}</span>
+            <h2 class="text-xl font-bold text-slate-900 mt-1">${product.title}</h2>
+            
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> ${product.rating}</span>
+              <span class="text-xs text-slate-400">(${product.reviews} reviews)</span>
+            </div>
+
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">${product.description}</p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex items-baseline gap-2 mb-4">
+              <span class="text-2xl font-extrabold text-slate-900">$${product.price.toFixed(2)}</span>
+              <span class="text-xs text-slate-400 line-through">$${product.originalPrice.toFixed(2)}</span>
+            </div>
+
+            <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full gradient-btn text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+              <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeQuickView() {
+      document.getElementById('quickViewModal').classList.add('hidden');
+    }
+
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        showToast('Your cart is empty!', 'error');
+        return;
+      }
+      toggleCartDrawer();
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function processOrder(e) {
+      e.preventDefault();
+      closeCheckoutModal();
+      
+      // Reset cart
+      cart = [];
+      updateCartUI();
+
+      document.getElementById('generatedOrderId').innerText = Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('successModal').classList.remove('hidden');
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+    }
+
+    // --- TOAST NOTIFICATIONS ---
+    function showToast(message, type = 'check') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.innerText = message;
+      
+      if (type === 'error') {
+        toastIcon.className = 'fa-solid fa-circle-exclamation text-red-400 text-base';
+      } else if (type === 'heart') {
+        toastIcon.className = 'fa-solid fa-heart text-red-500 text-base';
+      } else {
+        toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+    function syncOrderTotal() {
+  const displayedTotal = document
+    .getElementById("checkoutTotalAmount")
+    .textContent;
+
+  document.getElementById("orderTotal").value =
+    displayedTotal.replace(/[^0-9.-]/g, "");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("orderForm");
+  const totalDisplay = document.getElementById("checkoutTotalAmount");
+  const totalInput = document.getElementById("orderTotal");
+
+  if (!form) return;
+
+  form.addEventListener("submit", function () {
+    if (totalDisplay && totalInput) {
+      totalInput.value = totalDisplay.textContent
+        .replace(/[^0-9.-]/g, "");
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
